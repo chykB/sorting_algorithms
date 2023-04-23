@@ -20,6 +20,20 @@ typedef enum bool
 } bool;
 
 /**
+ * swap_ints - Swap two integers in an array.
+ * @a: The first integer to swap.
+ * @b: The second integer to swap.
+ */
+void swap_ints(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+/**
  * struct listint_s - Doubly linked list node
  *
  * @n: Integer stored in the node

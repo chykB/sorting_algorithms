@@ -1,8 +1,3 @@
-/*
- * File: 106-bitonic_sort.c
- * Auth: Brennan D Baraban
- */
-
 #include "sort.h"
 
 void swap_ints(int *a, int *b);
@@ -16,11 +11,11 @@ void bitonic_sort(int *array, size_t size);
  * @a: The first integer to swap.
  * @b: The second integer to swap.
  */
-void swap_ints(int *a, int *b)
+void int_swap(int *a, int *b)
 {
 	int temp = *a;
 	*a = *b;
-	*b = tmp;
+	*b = temp;
 }
 
 /**
@@ -42,7 +37,7 @@ void bitonic_merge(int *array, size_t size, size_t start, size_t seq,
 		{
 			if ((flow == UP && array[j] > array[j + jump]) ||
 			    (flow == DOWN && array[j] < array[j + jump]))
-				swap_ints(array + j, array + j + jump);
+				int_swap(array + j, array + j + jump);
 		}
 		bitonic_merge(array, size, start, jump, flow);
 		bitonic_merge(array, size, start + jump, jump, flow);
@@ -92,4 +87,3 @@ void bitonic_sort(int *array, size_t size)
 
 	bitonic_seq(array, size, 0, size, UP);
 }
-

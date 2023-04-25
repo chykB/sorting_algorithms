@@ -38,3 +38,34 @@ void radix_counting_sort(int *array, size_t size, int sig, int *buff)
 	size_t i;
 
 	for (i = 0; i < size; i++)
+		array[i] = buff[i];
+}
+
+/**
+ * radix_sort - Sort an array of integers in ascending
+ *              order using the radix sort algorithm.
+ * @array: An array of integers.
+ * @size: The size of the array.
+ *
+ * Description: Implements the LSD radix sort algorithm. Prints
+ * the array after each significant digit increase.
+ */
+void radix_sort(int *array, size_t size)
+{
+	int max, sig, *buff;
+
+	if (array == NULL || size < 2)
+		return;
+
+	buff = malloc(sizeof(int) * size);
+	if (buff == NULL)
+		return;
+
+	max = get_max(array, size);
+	for (sig = 1; max / sig > 0; sig *= 10)
+	{
+		radix_counting_sort(array, size, sig, buff);
+		print_array(array, size);
+	}
+
+	free(buff);
